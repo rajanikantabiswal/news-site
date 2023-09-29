@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2023 at 02:37 PM
+-- Generation Time: Sep 29, 2023 at 08:07 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -69,8 +69,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `username`, `password`, `role`) VALUES
-(35, 'user1', 'user1', 'user1', '24c9e15e52afc47c225b757e7bee1f9d', 0),
-(34, 'Badal', 'Biswal', 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 1);
+(40, 'Urmi Mala', 'Swain', 'urmi', '55d288ed04da0d897e621b5aba6d33aa', 0),
+(38, 'Rajanikanta', 'Biswal', 'rajanikanta', 'a452cd8af9f3d0a5a9e4a11e2830b9e5', 1),
+(41, 'User', 'One', 'user1', '2d441d342037a2131b4a79768509bab2', 0),
+(42, 'User', 'Two', 'user2', '8176d00b326b49d0130b688adf1349a9', 0),
+(43, 'User', 'Three', 'user3', '2ace2658b2a909c8261d977cda41a61d', 0),
+(44, 'User', 'Four', 'user4', 'baefe267ff5bb610d295c7b28beff33a', 0),
+(45, 'User', 'Five', 'user5', '33c1edd23225b6408c02eb9ba78008e4', 0);
 
 --
 -- Indexes for dumped tables
@@ -115,7 +120,7 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
