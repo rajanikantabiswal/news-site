@@ -1,34 +1,24 @@
 <?php include "header.php";
 
 include "config.php";
-    $user_id= $_GET['id'];
-    $sql= "SELECT * FROM user WHERE user_id= {$user_id}";
-    $result = mysqli_query($conn, $sql) or die("Query Failed");
+    
 
 // Updated recors
 if (isset($_POST['submit'])){
     $userid=mysqli_real_escape_string($conn, $_POST['user_id']);
-    $fname=mysqli_real_escape_string($conn, $_POST['fname']);
-    $lname=mysqli_real_escape_string($conn, $_POST['lname']);
-    $user=mysqli_real_escape_string($conn, $_POST['user']);
-    $password=mysqli_real_escape_string($conn,md5( $_POST['password']));
+    $fname=mysqli_real_escape_string($conn, $_POST['f_name']);
+    $lname=mysqli_real_escape_string($conn, $_POST['l_name']);
+    $user=mysqli_real_escape_string($conn, $_POST['username']);
+    // $password=mysqli_real_escape_string($conn,md5( $_POST['password']));
     $role= mysqli_real_escape_string($conn, $_POST['role']);
 
-
-    $sql1= "SELECT username FROM user WHERE username= '{$user}'";
-    $result1 = mysqli_query($conn, $sql1) or die("Query Failed");
-
-    if(mysqli_num_rows($result1)>0){
-        echo "<p>User name already exist.</p>";
-    } else {
-        $sql2= "UPDATE user(first_name,  last_name, username, password, role) VALUES('{$fname}', '{$lname}', '{$user}', '{$password}', '{$role}')";
-        $result2 = mysqli_query($conn, $sql1) or die("Query Failed");
+        $sql2= "UPDATE user SET first_name='{$fname}', last_name='{$lname}', username='{$user}', role='{$role}' WHERE user_id='{$userid}'";
+        $result2 = mysqli_query($conn, $sql2) or die("Query Failed");
 
         if($result2){
             header("location: {$hostname}/admin/users.php");
         }
     }
-}
 
 
 ?>
@@ -41,6 +31,9 @@ if (isset($_POST['submit'])){
               <div class="col-md-offset-4 col-md-4">
 
               <?php 
+              $user_id= $_GET['id'];
+              $sql= "SELECT * FROM user WHERE user_id= {$user_id}";
+              $result = mysqli_query($conn, $sql) or die("Query Failed");
                 if(mysqli_num_rows($result)>0){
                     while($row=mysqli_fetch_assoc($result)){
                 
