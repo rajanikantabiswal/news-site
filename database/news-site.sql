@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2023 at 08:07 PM
+-- Generation Time: Sep 30, 2023 at 02:26 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -32,6 +32,15 @@ CREATE TABLE `category` (
   `category_name` varchar(100) NOT NULL,
   `post` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `category_name`, `post`) VALUES
+(62, 'category 3', 0),
+(61, 'Category 1', 0),
+(63, 'category 4', 0);
 
 -- --------------------------------------------------------
 
@@ -69,13 +78,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `username`, `password`, `role`) VALUES
-(40, 'Urmi Mala', 'Swain', 'urmi', '55d288ed04da0d897e621b5aba6d33aa', 0),
-(38, 'Rajanikanta', 'Biswal', 'rajanikanta', 'a452cd8af9f3d0a5a9e4a11e2830b9e5', 1),
-(41, 'User', 'One', 'user1', '2d441d342037a2131b4a79768509bab2', 0),
-(42, 'User', 'Two', 'user2', '8176d00b326b49d0130b688adf1349a9', 0),
-(43, 'User', 'Three', 'user3', '2ace2658b2a909c8261d977cda41a61d', 0),
-(44, 'User', 'Four', 'user4', 'baefe267ff5bb610d295c7b28beff33a', 0),
-(45, 'User', 'Five', 'user5', '33c1edd23225b6408c02eb9ba78008e4', 0);
+(52, 'Rajanikanta', 'Biswal', 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
+(53, 'Urmi mala', 'Swain', 'urmi', '5f4dcc3b5aa765d61d8327deb882cf99', 0);
 
 --
 -- Indexes for dumped tables
@@ -108,7 +112,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `post`
@@ -120,7 +124,7 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
