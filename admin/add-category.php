@@ -1,4 +1,22 @@
-<?php include "header.php"; ?>
+<?php include "header.php"; 
+if (isset($_POST['save'])){
+    include "config.php";
+    $category= mysqli_real_escape_string($conn, $_POST['cat']);
+
+    $sql= "SELECT category_name FROM category WHERE category_name= '{$category}'";
+    $result = mysqli_query($conn, $sql) or die("Query Failed");
+    if(mysqli_num_rows($result)>0){
+        echo "Category already exist";
+    }else{
+        $sql1= "INSERT INTO category (category_name) VALUES ('{$category}')";
+        $result1= mysqli_query($conn, $sql1) or die("Query failed");
+
+        if($result1){
+            header("location: {$hostname}/admin/category.php");
+        }
+    } 
+}
+?>
   <div id="admin-content">
       <div class="container">
           <div class="row">
@@ -7,7 +25,7 @@
               </div>
               <div class="col-md-offset-3 col-md-6">
                   <!-- Form Start -->
-                  <form action="" method="POST" autocomplete="off">
+                  <form action="<?php $_SERVER['PHP_SELF']?>" method="POST" autocomplete="off">
                       <div class="form-group">
                           <label>Category Name</label>
                           <input type="text" name="cat" class="form-control" placeholder="Category Name" required>

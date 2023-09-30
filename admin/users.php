@@ -68,7 +68,7 @@ use LDAP\Result;
 $sql1="SELECT * FROM user";
 $result1= mysqli_query($conn, $sql1);
 
-if(mysqli_num_rows($result1)>0){
+if(mysqli_num_rows($result1)>$limit){
 $total_records=mysqli_num_rows($result1);
 $total_page = ceil($total_records/$limit);
 ?>
