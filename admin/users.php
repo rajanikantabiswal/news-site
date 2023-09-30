@@ -3,6 +3,9 @@
 use LDAP\Result;
 
  include "header.php"; 
+ if($_SESSION['user_role']==0){
+    header("location: {$hostname}/admin/post.php");
+ }
     include "config.php";
     $limit = 3;
     if(isset($_GET['page'])){

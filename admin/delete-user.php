@@ -1,4 +1,7 @@
 <?php 
+if($_SESSION['user_role']==0){
+    header("location: {$hostname}/admin/post.php");
+ }
 include "config.php";
 
 $user_id= $_GET['id'];

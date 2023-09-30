@@ -1,3 +1,11 @@
+<?php
+include "config.php";
+session_start();
+if(isset($_SESSION['user_name'])){
+    header("location: {$hostname}/admin/post.php");
+}
+?>
+
 <!doctype html>
 <html>
    <head>
@@ -18,7 +26,7 @@
                         <img class="logo" src="images/news.jpg">
                         <h3 class="heading">Admin</h3>
                         <!-- Form Start -->
-                        <form  action="" method ="POST">
+                        <form  action="<?php $_SERVER['PHP_SELF']?>" method ="POST">
                             <div class="form-group">
                                 <label>Username</label>
                                 <input type="text" name="username" class="form-control" placeholder="" required>
@@ -30,6 +38,31 @@
                             <input type="submit" name="login" class="btn btn-primary" value="login" />
                         </form>
                         <!-- /Form  End -->
+
+                        <?php
+                        if(isset($_POST['login'])){
+                            include "config.php";
+                           $username= mysqli_real_escape_string($conn, $_POST['username']);
+                            $password= md5($_POST['password']);
+
+                            $sql= "SELECT user_id, username, role, first_name FROM user WHERE username= '{$username}' AND password='{$password}'";
+                            $result = mysqli_query($conn, $sql) or die("Query failed");
+
+                            if(mysqli_num_rows($result)>0){
+                                while($row=mysqli_fetch_assoc($result)){
+                                session_start();
+                                $_SESSION['user_name']=$row['username'];
+                                $_SESSION['user_id']=$row['user_id'];
+                                $_SESSION['user_role']=$row['role'];
+                                $_SESSION['user_fname']=$row['first_name'];
+                                header("location: {$hostname}/admin/post.php");
+                                }
+                                        
+                                    }else{
+                                        echo "<h3>User name and password mismatch</h3>";
+                                    }
+                                }
+                        ?>
                     </div>
                 </div>
             </div>
