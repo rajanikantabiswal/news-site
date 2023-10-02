@@ -93,7 +93,7 @@ $total_page = ceil($total_records/$limit);
                     echo '<li><a href="users.php?page='.($page+1).'">Next</a></li>';
                     }
                     ?>
-                      <!-- <li class="active"><a>1</a></li> -->
+                     
                   </ul>
 <?php 
 }
