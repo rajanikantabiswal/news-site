@@ -57,7 +57,7 @@ include "header.php";
                               <td><?php echo $row['post_date'] ?></td>
                               <td><?php echo $row['first_name']?></td>
                               <td class='edit'><a href='update-post.php?id=<?php echo $row['post_id'] ?>'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
+                              <td class='delete'><a href='delete-post.php?id=<?php echo $row['post_id'] ?> & cat_id=<?php echo $row['category'] ?>'><i class='fa fa-trash-o'></i></a></td>
                           </tr>
                         <?php } ?>
                       </tbody>
@@ -67,7 +67,7 @@ include "header.php";
 
 <!-- Pagination Code start -->
 <?php
-$sql1="SELECT * FROM post WHERE post.author='{$_SESSION["user_id"]}'";
+$sql1="SELECT * FROM post";
 $result1= mysqli_query($conn, $sql1);
 
 if(mysqli_num_rows($result1)>$limit){

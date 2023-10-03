@@ -54,7 +54,6 @@ if(!isset($_SESSION['user_name'])){
                             <?php
                             if($_SESSION['user_role']==1){
                             ?>
-                            ?>
                             <li>
                                 <a href="category.php">Category</a>
                             </li>

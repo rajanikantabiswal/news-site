@@ -1,7 +1,4 @@
 <?php
-
-use LDAP\Result;
-
  include "header.php"; 
  if($_SESSION['user_role']==0){
     header("location: {$hostname}/admin/post.php");
@@ -103,4 +100,4 @@ $total_page = ceil($total_records/$limit);
           </div>
       </div>
   </div>
-<?php include "header.php"; ?>
+<?php include "footer.php"; ?>

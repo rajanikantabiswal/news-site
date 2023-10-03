@@ -9,8 +9,10 @@
     <div class="col-md-offset-3 col-md-6">
 
             <?php 
+            include "config.php";
               $post_id= $_GET['id'];
-              $sql= "SELECT * FROM post WHERE post_id= {$post_id}";
+              $sql= "SELECT post.post_id, post.title, post.description, post.post_img, post.category, category.category_name  FROM post LEFT JOIN category ON post.category=category.category_id
+            LEFT JOIN user ON post.author= user.user_id WHERE post_id={$post_id}";
               $result = mysqli_query($conn, $sql) or die("Query Failed");
                 if(mysqli_num_rows($result)>0){
                     while($row=mysqli_fetch_assoc($result)){  
@@ -34,7 +36,7 @@
                               <option disabled> Select Category</option>
 
                             <?php
-                            include "config.php";
+                            
                             $sql1= "SELECT * FROM category";
                             $result1= mysqli_query($conn, $sql1) or die("Query Failed");
                             if(mysqli_num_rows($result1)>0){
@@ -53,15 +55,17 @@
             </div>
             <div class="form-group">
                 <label for="">Post image</label>
-                <input type="file" name="new-image">
+                <input type="file" name="new_image">
                 <img  src="upload/<?php echo $row['post_img']?>" height="150px">
-                <input type="hidden" name="old-image" value="<?php echo $row['post_img']?>">
+                <input type="hidden" name="old_image" value="<?php echo $row['post_img']?>">
             </div>
             <input type="submit" name="submit" class="btn btn-primary" value="Update" />
         </form>
         <!-- Form End -->
         <?php
                     }
+                }else{
+                  echo "Result not found";
                 }
         ?>
       </div>
