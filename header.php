@@ -37,11 +37,22 @@
                 <ul class='menu'>
                     <?php
                     include "config.php";
-                    $sql= "SELECT * FROM category";
+                    if(isset($_GET['cat_id'])){
+                        $cat_id=$_GET['cat_id'];
+                    }
+                   
+                    $sql= "SELECT * FROM category WHERE post > 0";
                     $result= mysqli_query($conn, $sql) or die("Query failed");
                     while($row=mysqli_fetch_assoc($result)){
+                        if(isset($_GET['cat_id'])){
+                        if($cat_id== $row['category_id']){
+                            $active= "active";
+                        }else{
+                            $active="";
+                        }
+                        }
                     ?>
-                    <li><a href="category.php?cat_id=<?php echo $row['category_id']?>"><?php echo $row['category_name']?></a></li>
+                    <li><a class='<?php echo "{$active}" ?>' href="category.php?cat_id=<?php echo $row['category_id']?>"><?php echo $row['category_name']?></a></li>
                     <?php }
                     ?>
                 </ul>
