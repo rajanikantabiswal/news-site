@@ -1,10 +1,13 @@
 <?php include 'header.php'; 
 include "config.php";
-$cat_id=$_GET['cat_id'];
-$sql2="SELECT category_name FROM category WHERE category_id={$cat_id}";
-$result2=mysqli_query($conn, $sql2);
-$row=mysqli_fetch_assoc($result);
+if(isset($_GET['cat_id'])){
+    $cat_id=$_GET['cat_id'];
+}else{
+    header("location: {$hostname}/");
+}
 
+$sql3= "SELECT category_name FROM category WHERE category_id={$cat_id}";
+$row3= mysqli_fetch_assoc(mysqli_query($conn, $sql3));
 ?>
     <div id="main-content">
       <div class="container">
@@ -12,6 +15,7 @@ $row=mysqli_fetch_assoc($result);
             <div class="col-md-8">
                 <!-- post-container -->
                 <div class="post-container">
+                <h2 class="page-heading">Category : <?php echo $row3['category_name'] ?></h2>
 
                 
 
@@ -25,9 +29,9 @@ if(isset($_GET['page'])){
 }
 
 $offset=($page-1)* $limit;
-
 $sql= "SELECT * FROM post LEFT JOIN category ON post.category=category.category_id
 LEFT JOIN user ON post.author= user.user_id WHERE category={$cat_id} ORDER BY post.post_id DESC LIMIT {$offset}, {$limit}";
+
 
 $result= mysqli_query($conn, $sql);
 if(mysqli_num_rows($result)>0){
@@ -49,7 +53,7 @@ if(mysqli_num_rows($result)>0){
                         </span>
                         <span>
                             <i class="fa fa-user" aria-hidden="true"></i>
-                            <a href='author.php'><?php echo $row['first_name'] ?></a>
+                            <a href='author.php?a_id=<?php echo $row['user_id']?>'><?php echo $row['first_name'] ?></a>
                         </span>
                         <span>
                             <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -72,6 +76,7 @@ if(mysqli_num_rows($result)>0){
     ?>
 <!-- Pagination Code start -->
 <?php
+
 $sql1="SELECT * FROM post WHERE category={$cat_id}";
 $result1= mysqli_query($conn, $sql1);
 
@@ -81,6 +86,7 @@ $total_page = ceil($total_records/$limit);
 ?>
 <ul class='pagination admin-pagination'>
 <?php
+
 if($page>1){
     echo '<li><a href="category.php?page='.($page-1).'& cat_id='.($cat_id).'">Prev</a></li>';
 }
@@ -96,6 +102,7 @@ for($i=1;$i <= $total_page;$i++){
 if($page<$total_page){
 echo '<li><a href="category.php?page='.($page+1).'& cat_id='.($cat_id).'">Next</a></li>';
 }
+
 ?>
  
 </ul>
