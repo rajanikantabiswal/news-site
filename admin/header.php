@@ -4,6 +4,10 @@ session_start();
 if(!isset($_SESSION['user_name'])){
     header("location: {$hostname}/admin/");
 }
+
+$sql_setting= "SELECT * FROM setting";
+$result_setting= mysqli_query($conn, $sql_setting);
+$row_setting=mysqli_fetch_assoc($result_setting);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +33,7 @@ if(!isset($_SESSION['user_name'])){
                 <div class="row">
                     <!-- LOGO -->
                     <div class="col-md-2">
-                        <a href="post.php"><img class="logo" src="images/news.jpg"></a>
+                        <a href="post.php"><img src="images/<?php echo $row_setting['logo']?>" height="50px"></a>
                     </div>
                     <!-- /LOGO -->
                       <!-- LOGO-Out -->
@@ -59,6 +63,9 @@ if(!isset($_SESSION['user_name'])){
                             </li>
                             <li>
                                 <a href="users.php">Users</a>
+                            </li>
+                            <li>
+                                <a href="setting.php">Setting</a>
                             </li>
 
                         <?php

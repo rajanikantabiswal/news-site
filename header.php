@@ -24,15 +24,26 @@ switch($page){
         }
         break;
     case "author.php":
-        $page_title= "Author Page";
+        if(isset($_GET['a_id'])){
+            $a_id= $_GET['a_id'];
+            $sql_title= "SELECT first_name FROM user WHERE user_id= {$a_id}";
+            $row_title= mysqli_fetch_assoc(mysqli_query($conn, $sql_title));
+            $page_title= "Author: ". $row_title['first_name'];
+        }else{
+            $page_title= "No category found";
+        }
         break;
     case "search.php":
-        $page_title= "Search page";
+            $page_title="Search for : "."{$_GET['search']}";
         break;
     default:
         $page_title= "News Site";
 
 }
+
+$sql_setting= "SELECT * FROM setting";
+$result_setting= mysqli_query($conn, $sql_setting);
+$row_setting=mysqli_fetch_assoc($result_setting);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +69,7 @@ switch($page){
         <div class="row">
             <!-- LOGO -->
             <div class=" col-md-offset-4 col-md-4">
-                <a href="index.php" id="logo"><img src="images/jetsmart-logo.png"></a>
+                <a href="index.php" id="logo"><img src="admin/images/<?php echo $row_setting['logo']?>"></a>
             </div>
             <!-- /LOGO -->
         </div>

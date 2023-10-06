@@ -40,29 +40,29 @@ if(mysqli_num_rows($result)>0){
                     <div class="post-content">
                         <div class="row">
                             <div class="col-md-4">
-                                <a class="post-img" href="single.php"><img src="images/post-format.jpg" alt=""/></a>
+                            <a class="post-img" href="single.php?id=<?php echo $row['post_id']?>"><img src="admin/upload/<?php echo $row['post_img'] ?>" alt=""/></a>
                             </div>
                             <div class="col-md-8">
                                 <div class="inner-content clearfix">
-                                    <h3><a href='single.php'>Lorem ipsum dolor sit amet, consectetur adipiscing elit</a></h3>
-                                    <div class="post-information">
-                                        <span>
-                                            <i class="fa fa-tags" aria-hidden="true"></i>
-                                            <a href='category.php'>PHP</a>
-                                        </span>
-                                        <span>
-                                            <i class="fa fa-user" aria-hidden="true"></i>
-                                            <a href='author.php'>Admin</a>
-                                        </span>
-                                        <span>
-                                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                                            01 Nov, 2019
-                                        </span>
-                                    </div>
+                                <h3><a href='single.php?id=<?php echo $row['post_id']?>'><?php echo $row['title'] ?></a></h3>
+                                <div class="post-information">
+                                    <span>
+                                        <i class="fa fa-tags" aria-hidden="true"></i>
+                                        <a href='category.php?cat_id=<?php echo $row['category']?>'><?php echo $row['category_name'] ?></a>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <a href='author.php?a_id=<?php echo $row['user_id']?>'><?php echo $row['first_name'] ?></a>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        <?php echo $row['post_date'] ?>
+                                    </span>
+                                </div>
                                     <p class="description">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua....
+                                    <?php echo $row['description'] ?>
                                     </p>
-                                    <a class='read-more pull-right' href='single.php'>read more</a>
+                                    <a class='read-more pull-right' href='single.php?id=<?php echo $row['post_id']?>'>read more</a>
                                 </div>
                             </div>
                         </div>

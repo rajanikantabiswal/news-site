@@ -67,7 +67,7 @@ include "header.php";
 
 <!-- Pagination Code start -->
 <?php
-$sql1="SELECT * FROM post";
+$sql1="SELECT * FROM post WHERE author='{$_SESSION["user_id"]}'";
 $result1= mysqli_query($conn, $sql1);
 
 if(mysqli_num_rows($result1)>$limit){
