@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2023 at 02:36 PM
+-- Generation Time: Oct 06, 2023 at 02:32 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -38,7 +38,7 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`category_id`, `category_name`, `post`) VALUES
-(64, 'Gspeed', 2),
+(64, 'Gspeed', 3),
 (61, 'Eureka Learnings', 5);
 
 -- --------------------------------------------------------
@@ -68,7 +68,28 @@ INSERT INTO `post` (`post_id`, `title`, `description`, `category`, `post_date`, 
 (63, '4th post on eureka learnings', 'eureka learnings 4th post description', '61', '03 Oct, 2023', 54, 'Polycab.jpg'),
 (64, '4th post for eureka learnings', 'eureka learnings desc', '61', '03 Oct, 2023', 52, 'Process Map.png'),
 (65, 'eureka learnings 5th post', '5th desc', '61', '03 Oct, 2023', 52, 'react.png'),
-(66, 'New post 27', 'description for new post 27', '61', '05 Oct, 2023', 52, 'silhouettes-of-business-people-in-modern-office-interior.jpg');
+(66, 'New post 27', 'description for new post 27', '61', '05 Oct, 2023', 52, 'silhouettes-of-business-people-in-modern-office-interior.jpg'),
+(67, 'This is my final post from urmi', 'This is the description for the final post', '64', '06 Oct, 2023', 54, 'javaScript.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setting`
+--
+
+CREATE TABLE `setting` (
+  `website_name` varchar(60) NOT NULL,
+  `logo` varchar(50) NOT NULL,
+  `footer_text` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `setting`
+--
+
+INSERT INTO `setting` (`website_name`, `logo`, `footer_text`) VALUES
+('RK News', 'eurekalearnings-logo.png', '© Copyright 2019 News | Powered by RK News'),
+('RK News', 'eurekalearnings-logo.png', '© Copyright 2019 News | Powered by RK News');
 
 -- --------------------------------------------------------
 
@@ -130,7 +151,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `user`
